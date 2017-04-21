@@ -1,0 +1,43 @@
+<!doctype html>
+
+<!-- ASSIGN ANGULAR MODULE -->
+<html ng-app="celebrityGame">
+
+<head>
+  <!-- META -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Celebtity</title>
+
+  <!-- SCROLLS -->
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+  <style>
+    html                { overflow-y:scroll; }
+    body                { padding-top:50px; }
+    #idea-list          { margin-bottom:30px; }
+  </style>
+
+  <!-- SPELLS -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+  <script src="app.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+
+</head>
+
+<!-- SET CONTROLLER AND GET IDEAS -->
+<body ng-controller="gameController">
+  <div class="container">
+
+    <div class="col-sm-8 col-sm-offset-2">
+      <div class="jumbotron">
+        <h1> Welcome to Celebrity!</h1>
+        <button type="submit" class="btn btn-primary btn-lg" ng-click="createGame()">Create Game</button>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>

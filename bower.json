@@ -1,7 +1,7 @@
 {
   "name": "celebrity-game",
   "description": "Front end web application for the Celebrity game",
-  "main": "app.js",
+  "main": "app/app.js",
   "authors": [
     "Evan Waters"
   ],
@@ -17,6 +17,9 @@
   "dependencies": {
     "angular": "^1.6.4",
     "angular-ui-router": "^0.4.2",
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "angular-bootstrap": "^2.5.0",
+    "ajax": "^2.1.5",
+    "nanoajax": "^0.4.3"
   }
 }
