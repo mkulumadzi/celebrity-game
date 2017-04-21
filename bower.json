@@ -1,0 +1,22 @@
+{
+  "name": "celebrity-game",
+  "description": "Front end web application for the Celebrity game",
+  "main": "app.js",
+  "authors": [
+    "Evan Waters"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/mkulumadzi/celebrity-game",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-ui-router": "^0.4.2",
+    "bootstrap": "^3.3.7"
+  }
+}

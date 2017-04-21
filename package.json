@@ -1,0 +1,19 @@
+{
+  "name": "celebrity-game",
+  "version": "1.0.0",
+  "description": "Front end web application for the Celebrity game",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkulumadzi/celebrity-game.git"
+  },
+  "author": "Evan Waters",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mkulumadzi/celebrity-game/issues"
+  },
+  "homepage": "https://github.com/mkulumadzi/celebrity-game#readme"
+}
