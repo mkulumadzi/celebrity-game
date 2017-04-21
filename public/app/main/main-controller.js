@@ -1,13 +1,12 @@
 angular.module('app')
-  .controller('MainCtrl', ['$scope', '$http', '$cookies', function ($scope, $http, $cookies) {
+  .controller('MainCtrl', ['$scope', '$http', '$cookies', '$location', function ($scope, $http, $cookies, $location) {
 
   $scope.createGame = function() {
     $http.post('/api/games', null )
     .then(function successCallback(response) {
-      $cookies.put('game', JSON.stringify(response.data));
-      var game = JSON.parse($cookies.get('game'));
-      console.log(game);
-      console.log(game.shortId);
+      var game = response.data
+      $cookies.put('game', JSON.stringify(game));
+      $location.path( "/game" );
     }, function errorCallback(response) {
       console.log(response);
     });
