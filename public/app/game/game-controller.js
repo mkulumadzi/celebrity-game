@@ -9,8 +9,6 @@ angular.module('app')
   // Load data
   $scope.loadGame = function() {
     $scope.shortId = JSON.parse($cookies.get('game')).shortId;
-    console.log($scope.shortId);
-    $scope.setAuthHeader();
     $http.get('/api/game')
     .then(function successCallback(response) {
       console.log(response);
@@ -19,6 +17,21 @@ angular.module('app')
     });
   };
 
+  // Load data
+  $scope.startGame = function() {
+    $scope.setAuthHeader();
+    $http.put('/api/game/start')
+    .then(function successCallback(response) {
+      console.log(response);
+    }, function errorCallback(response) {
+      $scope.errorMessage = response.data.message;
+      $('#startGameError').show();
+      console.log(response);
+    });
+  };
+
+  $('#startGameError').hide();
+  $scope.setAuthHeader();
   $scope.loadGame();
 
 

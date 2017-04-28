@@ -14,4 +14,16 @@ angular.module('app')
       controller: 'GameCtrl' // the name of the controller to use
     });
 
+    $stateProvider.state('join', { // this is a name for our route
+      url: '/join/:id', // the actual url path of the route
+      templateUrl: 'app/player/join.html', // the template that will load
+      controller: 'JoinGameCtrl' // the name of the controller to use
+    });
+
+    $stateProvider.state('add-celebrity', { // this is a name for our route
+      url: '/celebrity', // the actual url path of the route
+      templateUrl: 'app/player/add-celebrity.html', // the template that will load
+      controller: 'AddCelebrityCtrl' // the name of the controller to use
+    });
+
   }]);

@@ -1,0 +1,41 @@
+<div class="container">
+
+  <div class="col-sm-8 col-sm-offset-2">
+
+    <div class="jumbotron">
+      <h1>Welcome, {{playerName}}!</h1>
+      <h2>Now it's time to add some celebrities</h2>
+      <form>
+        <div class="form-group">
+          <label for="formGroupExampleInput">Celebrity: </label>
+          <input type="text" class="form-control input-lg text-left" placeholder="Dave Coulier" ng-model="formData.name">
+        </div>
+
+        <!-- createIdea() will create new ideas -->
+        <button type="submit" class="btn btn-primary btn-lg" ng-click="addCelebrity()">Add</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="celebrity-list" class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+
+        <div class="page-header">
+          <h2>Celebrities added:</h2>
+        </div>
+
+        <!-- LOOP OVER THE IDEAS IN $scope.ideas -->
+        <div ng-repeat="celebrity in celebritiesAdded">
+
+          <div class="list-group">
+            <li class="list-group-item">
+              <h4 class="list-group-item-heading">{{ celebrity.name }}</h4>
+            </li>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+</div>

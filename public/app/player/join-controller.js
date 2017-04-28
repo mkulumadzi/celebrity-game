@@ -1,0 +1,16 @@
+angular.module('app')
+  .controller('JoinGameCtrl', ['$scope', '$http', '$cookies', '$stateParams', '$location', function ($scope, $http, $cookies, $stateParams, $location) {
+
+  $scope.joinGame = function() {
+    $scope.formData.shortId = $stateParams.id;
+    $http.post('/api/join', $scope.formData)
+    .then(function successCallback(response) {
+      var player = response.data
+      $cookies.put('player', JSON.stringify(player));
+      $location.path("/celebrity");
+    }, function errorCallback(response) {
+      console.log(response);
+    });
+  }
+
+}]);
