@@ -8,6 +8,12 @@ angular.module('app')
       controller: 'MainCtrl' // the name of the controller to use
     });
 
+    $stateProvider.state('start', { // this is a name for our route
+      url: '/start', // the actual url path of the route
+      templateUrl: 'app/game/start.html', // the template that will load
+      controller: 'StartCtrl' // the name of the controller to use
+    });
+
     $stateProvider.state('game', { // this is a name for our route
       url: '/game', // the actual url path of the route
       templateUrl: 'app/game/game.html', // the template that will load
