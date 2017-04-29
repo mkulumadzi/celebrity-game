@@ -20,6 +20,7 @@
     "bootstrap": "^3.3.7",
     "angular-bootstrap": "^2.5.0",
     "ajax": "^2.1.5",
-    "nanoajax": "^0.4.3"
+    "nanoajax": "^0.4.3",
+    "socket.io": "^1.7.3"
   }
 }

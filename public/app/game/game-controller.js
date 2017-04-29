@@ -1,8 +1,11 @@
 angular.module('app')
   .controller('GameCtrl', ['$scope', '$http', '$cookies', function ($scope, $http, $cookies) {
 
+  var socket = io('http://192.168.99.100:8080');
+  var gameId = JSON.parse($cookies.get('game'))._id;
+  $scope.gamePlayers = [];
+
   $scope.setAuthHeader = function() {
-    var gameId = JSON.parse($cookies.get('game'))._id;
     $http.defaults.headers.common.Authorization = 'Bearer ' + gameId;
   }
 
@@ -34,5 +37,19 @@ angular.module('app')
   $scope.setAuthHeader();
   $scope.loadGame();
 
+  // Connected to the room
+  socket.on('connect', function() {
+    socket.emit('room', gameId);
+  });
+
+  socket.on('player joined', function(data) {
+    $scope.$applyAsync(function () {
+      $scope.gamePlayers.push(data);
+    });
+  });
+
+  socket.on('message', function (data) {
+    console.log(data);
+  });
 
 }]);
