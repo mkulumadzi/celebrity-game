@@ -21,6 +21,7 @@
     "angular-bootstrap": "^2.5.0",
     "ajax": "^2.1.5",
     "nanoajax": "^0.4.3",
-    "socket.io": "^1.7.3"
+    "socket.io": "^1.7.3",
+    "angular-timer": "^1.3.5"
   }
 }

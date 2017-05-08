@@ -5,6 +5,7 @@ angular.module('app')
 
   $scope.player = JSON.parse($cookies.get('player'));
   $scope.status = 0;
+  $scope.timeRemaining = 0;
 
   $scope.setAuthHeader = function() {
     $http.defaults.headers.common.Authorization = 'Bearer ' + $scope.player._id;
@@ -22,6 +23,9 @@ angular.module('app')
     } else {
       $scope.statusMessage = "Good luck!";
       $('#start-turn').hide();
+      $scope.timeRemaining = 60;
+      $scope.$broadcast('timer-reset');
+      $scope.$broadcast('timer-start');
       $('#game-play').show();
     }
   }
