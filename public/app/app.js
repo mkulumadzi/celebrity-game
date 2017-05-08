@@ -12,6 +12,7 @@ angular.module('app', [
     $locationProvider.html5Mode(true); // allow html5mode routes (no #)
     $urlRouterProvider.otherwise('/'); // if route not found redirect to /
   }])
+  
   // after the configuration and when app runs the first time we o some more stuff
   .run(['$rootScope', '$state', function ($rootScope, $state) {
     'use strict';

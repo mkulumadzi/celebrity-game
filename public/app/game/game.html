@@ -1,10 +1,45 @@
 <div class="container">
 
-  <div class="col-sm-8 col-sm-offset-2">
-    <div class="jumbotron">
-      <h1>The game has started</h1>
-    </div>
-
+  <div class="col-sm-10 col-sm-offset-1">
+    <h1>Next up: {{nextPlayer.name}}</h1>
   </div>
+
+  <div class="col-sm-5 col-sm-offset-1">
+    <h1>{{game.teamA.name}}</h1>
+    <h2>Score: {{game.teamA.score}}</h2>
+    <div id="player-list" class="row">
+      <h2>Players:</h2>
+      <div ng-repeat="player in game.teamA.players">
+
+        <div class="list-group">
+          <li class="list-group-item">
+            <h4 class="list-group-item-heading">{{ player.name }}</h4>
+          </li>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-sm-5">
+    <h1>{{game.teamB.name}}</h1>
+    <h2>Score: {{game.teamB.score}}</h2>
+    <div id="player-list" class="row">
+      <h2>Players:</h2>
+      <div ng-repeat="player in game.teamB.players">
+
+        <div class="list-group">
+          <li class="list-group-item">
+            <h4 class="list-group-item-heading">{{ player.name }}</h4>
+          </li>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
 
 </div>

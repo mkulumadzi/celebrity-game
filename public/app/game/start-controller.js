@@ -5,21 +5,11 @@ angular.module('app')
   var gameId = JSON.parse($cookies.get('game'))._id;
   $scope.gamePlayers = [];
   $scope.gameCelebrities = [];
+  $scope.shortId = JSON.parse($cookies.get('game')).shortId;
 
   $scope.setAuthHeader = function() {
     $http.defaults.headers.common.Authorization = 'Bearer ' + gameId;
   }
-
-  // Load data
-  $scope.loadGame = function() {
-    $scope.shortId = JSON.parse($cookies.get('game')).shortId;
-    $http.get('/api/game')
-    .then(function successCallback(response) {
-      console.log(response);
-    }, function errorCallback(response) {
-      console.log(response);
-    });
-  };
 
   // Load data
   $scope.startGame = function() {
@@ -36,7 +26,6 @@ angular.module('app')
 
   $('#startGameError').hide();
   $scope.setAuthHeader();
-  $scope.loadGame();
 
   // Connected to the room
   socket.on('connect', function() {
@@ -50,7 +39,7 @@ angular.module('app')
   });
 
   socket.on('celebrity added', function(data) {
-    console.log(data);
+    // console.log(data);
     $scope.$applyAsync(function () {
       $scope.gameCelebrities.push(data);
     });
