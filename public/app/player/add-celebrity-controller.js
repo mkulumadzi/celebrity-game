@@ -1,5 +1,5 @@
 angular.module('app')
-  .controller('AddCelebrityCtrl', ['$scope', '$http', '$cookies', '$stateParams', '$location', 'playerService', function ($scope, $http, $cookies, $stateParams, $location, playerService) {
+  .controller('AddCelebrityCtrl', ['$scope', '$http', '$cookies', '$stateParams', '$location', 'playerService', '$timeout', function ($scope, $http, $cookies, $stateParams, $location, playerService, $timeout) {
 
   $scope.celebritiesAdded = []
   $scope.player = playerService.player;
@@ -11,10 +11,20 @@ angular.module('app')
     $http.post('/api/celebrity', $scope.formData)
     .then(function successCallback(response) {
       $scope.celebritiesAdded.push(response.data);
-      console.log($scope.celebritiesAdded);
+      $scope.resetForm(form);
     }, function errorCallback(response) {
-      console.log(response);
+      $scope.errorMessage = response.data.message;
+      $scope.form.$setUntouched();
+
+      $timeout(function() {
+        $scope.errorMessage = '';
+      }, 2000);
     });
+  }
+
+  $scope.resetForm = function() {
+    $scope.form.$setPristine();
+    $scope.formData = {};
   }
 
   playerService.socket.on('game started', function(data) {

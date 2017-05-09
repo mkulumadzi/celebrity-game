@@ -9,7 +9,8 @@ angular.module('app')
       $cookies.put('player', JSON.stringify(player));
       $location.path("/celebrity");
     }, function errorCallback(response) {
-      console.log(response);
+      $scope.errorMessage = response.data.message;
+      $scope.form.$setUntouched();
     });
   }
 

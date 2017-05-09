@@ -5,14 +5,19 @@
     <div class="jumbotron">
       <h1>Welcome, {{player.name}}!</h1>
       <h2>Now it's time to add some celebrities</h2>
-      <form>
+      <form name="form">
         <div class="form-group">
           <label for="formGroupExampleInput">Celebrity: </label>
           <input type="text" class="form-control input-lg text-left" placeholder="Dave Coulier" ng-model="formData.name">
         </div>
 
-        <!-- createIdea() will create new ideas -->
         <button type="submit" class="btn btn-primary btn-lg" ng-click="addCelebrity()">Add</button>
+
+        <div class="alert alert-danger" ng-show="errorMessage">
+          {{errorMessage}}
+        </div>
+
+
       </form>
     </div>
   </div>
