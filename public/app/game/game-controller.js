@@ -1,16 +1,11 @@
 angular.module('app')
-  .controller('GameCtrl', ['$scope', '$http', '$cookies', function ($scope, $http, $cookies) {
+  .controller('GameCtrl', ['$scope', '$http', '$cookies', 'gameService', function ($scope, $http, $cookies, gameService) {
 
-  var socket = io('http://192.168.99.100:8080');
-  var gameId = JSON.parse($cookies.get('game'))._id;
-
-  $scope.setAuthHeader = function() {
-    $http.defaults.headers.common.Authorization = 'Bearer ' + gameId;
-  }
+  gameService.setAuthHeader();
+  gameService.joinRoom();
 
   // Load data
   $scope.loadGame = function() {
-    $scope.shortId = JSON.parse($cookies.get('game')).shortId;
     $http.get('/api/game')
     .then(function successCallback(response) {
       $scope.game = response.data;
@@ -31,16 +26,10 @@ angular.module('app')
   }
 
   $('#startGameError').hide();
-  $scope.setAuthHeader();
   $scope.loadGame();
   $scope.getNextPlayer();
 
-  // Connected to the room
-  socket.on('connect', function() {
-    socket.emit('room', gameId);
-  });
-
-  socket.on('message', function (data) {
+  gameService.socket.on('message', function (data) {
     console.log(data);
   });
 

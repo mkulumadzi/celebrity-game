@@ -1,4 +1,4 @@
-// create a angular module named 'app'
+// create an angular module named 'app'
 angular.module('app', [
     'ui.bootstrap' // load angular-ui.bootstrap
     ,'ui.router' // load angular-ui-router

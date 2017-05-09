@@ -1,15 +1,11 @@
 angular.module('app')
-  .controller('AddCelebrityCtrl', ['$scope', '$http', '$cookies', '$stateParams', '$location', function ($scope, $http, $cookies, $stateParams, $location) {
-
-  var socket = io('http://192.168.99.100:8080');
+  .controller('AddCelebrityCtrl', ['$scope', '$http', '$cookies', '$stateParams', '$location', 'playerService', function ($scope, $http, $cookies, $stateParams, $location, playerService) {
 
   $scope.celebritiesAdded = []
+  $scope.player = playerService.player;
 
-  $scope.player = JSON.parse($cookies.get('player'));
-
-  $scope.setAuthHeader = function() {
-    $http.defaults.headers.common.Authorization = 'Bearer ' + $scope.player._id;
-  }
+  playerService.setAuthHeader();
+  playerService.joinRooms();
 
   $scope.addCelebrity = function() {
     $http.post('/api/celebrity', $scope.formData)
@@ -21,14 +17,7 @@ angular.module('app')
     });
   }
 
-  $scope.setAuthHeader();
-
-  // Connected to the game room
-  socket.on('connect', function() {
-    socket.emit('room', $scope.player.game);
-  });
-
-  socket.on('game started', function(data) {
+  playerService.socket.on('game started', function(data) {
     $scope.$applyAsync(function () {
       $location.path( '/play' );
     });

@@ -1,19 +1,15 @@
 angular.module('app')
-  .controller('StartCtrl', ['$scope', '$http', '$cookies', '$location', function ($scope, $http, $cookies, $location) {
+  .controller('StartCtrl', ['$scope', '$http', '$cookies', '$location', 'gameService', function ($scope, $http, $cookies, $location, gameService) {
 
-  var socket = io('http://192.168.99.100:8080');
-  var gameId = JSON.parse($cookies.get('game'))._id;
+  gameService.setAuthHeader();
+  gameService.joinRoom();
+
   $scope.gamePlayers = [];
   $scope.gameCelebrities = [];
   $scope.shortId = JSON.parse($cookies.get('game')).shortId;
 
-  $scope.setAuthHeader = function() {
-    $http.defaults.headers.common.Authorization = 'Bearer ' + gameId;
-  }
-
   // Load data
   $scope.startGame = function() {
-    $scope.setAuthHeader();
     $http.put('/api/game/start')
     .then(function successCallback(response) {
       $location.path( '/game' );
@@ -25,27 +21,20 @@ angular.module('app')
   };
 
   $('#startGameError').hide();
-  $scope.setAuthHeader();
 
-  // Connected to the room
-  socket.on('connect', function() {
-    socket.emit('room', gameId);
-  });
-
-  socket.on('player joined', function(data) {
+  gameService.socket.on('player joined', function(data) {
     $scope.$applyAsync(function () {
       $scope.gamePlayers.push(data);
     });
   });
 
-  socket.on('celebrity added', function(data) {
-    // console.log(data);
+  gameService.socket.on('celebrity added', function(data) {
     $scope.$applyAsync(function () {
       $scope.gameCelebrities.push(data);
     });
   });
 
-  socket.on('message', function (data) {
+  gameService.socket.on('message', function (data) {
     console.log(data);
   });
 

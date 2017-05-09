@@ -1,15 +1,12 @@
 angular.module('app')
-  .controller('PlayCtrl', ['$scope', '$http', '$cookies', '$stateParams', '$location', function ($scope, $http, $cookies, $stateParams, $location) {
+  .controller('PlayCtrl', ['$scope', '$http', '$cookies', '$stateParams', '$location', 'playerService', function ($scope, $http, $cookies, $stateParams, $location, playerService) {
 
-  var socket = io('http://192.168.99.100:8080');
-
-  $scope.player = JSON.parse($cookies.get('player'));
+  $scope.player = playerService.player;
   $scope.status = 0;
   $scope.timeRemaining = 0;
 
-  $scope.setAuthHeader = function() {
-    $http.defaults.headers.common.Authorization = 'Bearer ' + $scope.player._id;
-  }
+  playerService.setAuthHeader();
+  playerService.joinRooms();
 
   $scope.updateView = function() {
     if( $scope.status == 0 ) {
@@ -55,16 +52,9 @@ angular.module('app')
   };
 
   $scope.updateView();
-  $scope.setAuthHeader();
-
-  // Connected to the game room and the player room
-  socket.on('connect', function() {
-    socket.emit('room', $scope.player.game);
-    socket.emit('room', $scope.player._id);
-  });
 
   // Let the user know when it's their turn
-  socket.on('your turn', function() {
+  playerService.socket.on('your turn', function() {
     $scope.$applyAsync(function () {
       $scope.status = 1;
       $scope.updateView();
