@@ -1,0 +1,15 @@
+<h1>{{team.name}}</h1>
+<h2>The score: {{team.score}}</h2>
+<div id="player-list" class="row">
+  <h2>Players:</h2>
+  <div ng-repeat="player in team.players">
+
+    <div class="list-group">
+      <li class="list-group-item">
+        <h4 class="list-group-item-heading">{{ player.name }}</h4>
+      </li>
+    </div>
+
+  </div>
+
+</div>

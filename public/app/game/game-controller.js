@@ -25,12 +25,7 @@ angular.module('app')
     })
   }
 
-  $('#startGameError').hide();
   $scope.loadGame();
   $scope.getNextPlayer();
-
-  gameService.socket.on('message', function (data) {
-    console.log(data);
-  });
 
 }]);

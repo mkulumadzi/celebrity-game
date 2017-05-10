@@ -1,5 +1,5 @@
 angular.module('app')
-  .controller('StartCtrl', ['$scope', '$http', '$cookies', '$location', 'gameService', function ($scope, $http, $cookies, $location, gameService) {
+  .controller('StartCtrl', ['$scope', '$http', '$cookies', '$location', 'gameService', '$timeout', function ($scope, $http, $cookies, $location, gameService, $timeout) {
 
   gameService.setAuthHeader();
   gameService.joinRoom();
@@ -15,12 +15,11 @@ angular.module('app')
       $location.path( '/game' );
     }, function errorCallback(response) {
       $scope.errorMessage = response.data.message;
-      $('#startGameError').show();
-      console.log(response);
+      $timeout(function() {
+        $scope.errorMessage = '';
+      }, 2000);
     });
   };
-
-  $('#startGameError').hide();
 
   gameService.socket.on('player joined', function(data) {
     $scope.$applyAsync(function () {

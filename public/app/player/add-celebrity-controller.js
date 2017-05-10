@@ -15,7 +15,6 @@ angular.module('app')
     }, function errorCallback(response) {
       $scope.errorMessage = response.data.message;
       $scope.form.$setUntouched();
-
       $timeout(function() {
         $scope.errorMessage = '';
       }, 2000);

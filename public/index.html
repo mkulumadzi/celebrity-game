@@ -21,7 +21,8 @@
   <body ng-app="app">
 
     <!-- where ui-router load the views -->
-    <div ui-view></div>
+    <!-- <div ui-view></div> -->
+    <ui-view></ui-view>
 
     <!-- deps -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -47,5 +48,8 @@
 
     <script src="app/game/game-service.js"></script>
     <script src="app/player/player-service.js"></script>
+
+    <script src="app/game/team-directive.js"></script>
+
   </body>
 </html>
