@@ -2,18 +2,34 @@
 
   <div class="col-sm-8 col-sm-offset-2">
 
-    <div class="jumbotron">
+    <div ng-show="status == 0">
+      <not-your-turn player="player"></not-your-turn>
+    </div>
+
+    <div ng-show="status == 1">
+      <your-turn player="player"></your-turn>
+    </div>
+
+    <div ng-show="status == 2">
+      <playing turn="turn"></playing>
+    </div>
+
+    <div ng-show="status == 3">
+      <finished-turn player="player"></finished-turn>
+    </div>
+
+    <!-- <div class="jumbotron">
       <h1>{{player.name}}</h1>
       <h2>{{statusMessage}}</h2>
 
       <div id="start-turn">
         <button type="submit" class="btn btn-primary btn-lg" ng-click="startTurn()">Start Turn</button>
       </div>
-    </div>
+    </div> -->
 
   </div>
 
-  <div id="game-play" class="col-sm-8 col-sm-offset-2">
+  <!-- <div id="game-play" class="col-sm-8 col-sm-offset-2">
 
     <div class="jumbotron">
       <h1>{{turn.celebrity.name}}</h1>
@@ -25,7 +41,7 @@
       <button type="button" class="btn btn-danger btn-lg" ng-click="addAttempt(false)">Wrong</button>
     </div>
 
-  </div>
+  </div> -->
 
 
 </div>

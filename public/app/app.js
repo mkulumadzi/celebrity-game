@@ -4,6 +4,7 @@ angular.module('app', [
     ,'ui.router' // load angular-ui-router
     ,'ngCookies'
     ,'timer'
+    ,'playYourTurnDirective'
   ])
   // router options
   .config(['$urlRouterProvider', '$locationProvider',
