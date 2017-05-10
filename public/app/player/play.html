@@ -2,28 +2,43 @@
 
   <div class="col-sm-8 col-sm-offset-2">
 
-    <div class="jumbotron">
+    <div ng-show="status == 0">
+      <div class="jumbotron">
+        <h1>{{player.name}}</h1>
+        <h2>It's not your turn yet.</h2>
+      </div>
+    </div>
+
+    <div ng-show="status == 1">
       <h1>{{player.name}}</h1>
-      <h2>{{statusMessage}}</h2>
+      <h2>It's your turn. Good luck!</h2>
 
       <div id="start-turn">
         <button type="submit" class="btn btn-primary btn-lg" ng-click="startTurn()">Start Turn</button>
       </div>
     </div>
 
-  </div>
+    <div ng-show="status == 2">
+      <div class="jumbotron">
+        <h1>{{turn.celebrity.name}}</h1>
 
-  <div id="game-play" class="col-sm-8 col-sm-offset-2">
+        <h2>Time Remaining: {{timeRemaining}}</h2>
 
-    <div class="jumbotron">
-      <h1>{{turn.celebrity.name}}</h1>
+        <button type="button" class="btn btn-success btn-lg" ng-click="addAttempt(true)">Right</button>
 
-      <h2>Time Remaining: <timer interval="1000" countdown="62" autostart="false">{{countdown}}</timer></h2>
-
-      <button type="button" class="btn btn-success btn-lg" ng-click="addAttempt(true)">Right</button>
-
-      <button type="button" class="btn btn-danger btn-lg" ng-click="addAttempt(false)">Wrong</button>
+        <button type="button" class="btn btn-danger btn-lg" ng-click="addAttempt(false)">Wrong</button>
+      </div>
     </div>
+
+    <div ng-show="status == 3">
+      <h1>{{player.name}}</h1>
+      <h2>Here's how you did.</h2>
+
+      <div id="start-turn">
+        <button type="submit" class="btn btn-primary btn-lg" ng-click="finishTurn()">Finish</button>
+      </div>
+    </div>
+
 
   </div>
 

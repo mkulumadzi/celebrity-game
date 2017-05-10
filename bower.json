@@ -22,6 +22,6 @@
     "ajax": "^2.1.5",
     "nanoajax": "^0.4.3",
     "socket.io": "^1.7.3",
-    "angular-timer": "^1.3.5"
+    "moment": "^2.18.1"
   }
 }

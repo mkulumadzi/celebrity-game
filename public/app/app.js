@@ -3,7 +3,6 @@ angular.module('app', [
     'ui.bootstrap' // load angular-ui.bootstrap
     ,'ui.router' // load angular-ui-router
     ,'ngCookies'
-    ,'timer'
   ])
   // router options
   .config(['$urlRouterProvider', '$locationProvider',
