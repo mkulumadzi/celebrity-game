@@ -60,4 +60,16 @@ angular.module('app')
     });
   });
 
+  // Update view when the turn ends, if it is now your turn.
+  playerService.socket.on('turn ended', function(data) {
+    console.log(data);
+    console.log($scope.player._id);
+    $scope.$applyAsync(function () {
+      var nextPlayer = data;
+      if ( nextPlayer._id == $scope.player._id ) {
+        $scope.status = 1;
+      }
+    });
+  });
+
 }]);
