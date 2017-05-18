@@ -1,6 +1,33 @@
 <div class="container">
 
-  <div class="col-sm-8 col-sm-offset-2">
+  <div ng-show="gameStatus == 1" class="col-sm-8 col-sm-offset-2">
+    <div class="jumbotron">
+      <h1>It's time to play round 1!</h1>
+      <button type="submit" class="btn btn-primary btn-lg" ng-click="continue()">Continue</button>
+    </div>
+  </div>
+
+  <div ng-show="gameStatus == 2" class="col-sm-8 col-sm-offset-2">
+    <div class="jumbotron">
+      <h1>It's time to play round 2!</h1>
+      <button type="submit" class="btn btn-primary btn-lg" ng-click="continue()">Continue</button>
+    </div>
+  </div>
+
+  <div ng-show="gameStatus == 3" class="col-sm-8 col-sm-offset-2">
+    <div class="jumbotron">
+      <h1>It's time to play round 3!</h1>
+      <button type="submit" class="btn btn-primary btn-lg" ng-click="continue()">Continue</button>
+    </div>
+  </div>
+
+  <div ng-show="gameStatus == 4" class="col-sm-8 col-sm-offset-2">
+    <div class="jumbotron">
+      <h1>The game is over.</h1>
+    </div>
+  </div>
+
+  <div ng-show="gameStatus == 0" class="col-sm-8 col-sm-offset-2">
 
     <div ng-show="status == 0">
       <div class="jumbotron">
