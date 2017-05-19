@@ -1,7 +1,7 @@
 angular.module('app')
   .controller('PlayCtrl', ['$scope', '$http', '$cookies', '$stateParams', '$location', 'playerService', '$timeout', function ($scope, $http, $cookies, $stateParams, $location, playerService, $timeout) {
 
-  $scope.player = playerService.player;
+  // $scope.player = playerService.player;
 
   playerService.setAuthHeader();
   playerService.joinRooms();
@@ -13,6 +13,7 @@ angular.module('app')
   $scope.getPlayerDetails = function() {
     $http.get('/api/player')
     .then(function successCallback(response) {
+      $scope.player = response.data;
       $scope.status = response.data.status;
       $scope.gameStatus = response.data.game.status;
       if ( response.data.turn ) {

@@ -1,39 +1,43 @@
 <div class="container">
 
+  <div class="col-sm-8 col-sm-offset-2">
+    <h3>{{player.name}} - {{player.teamName}}</h3>
+  </div>
+
   <div ng-show="gameStatus == 1" class="col-sm-8 col-sm-offset-2">
     <div class="jumbotron">
-      <h1>It's time to play round 1!</h1>
+      <h1>Round 1: Taboo</h1>
+      <h3>When it's your turn, get your teammates to guess as many celebrities as possible in 1 minute - you can use any word except that celebrity's name.</h3>
       <button type="submit" class="btn btn-primary btn-lg" ng-click="continue()">Continue</button>
     </div>
   </div>
 
   <div ng-show="gameStatus == 2" class="col-sm-8 col-sm-offset-2">
     <div class="jumbotron">
-      <h1>It's time to play round 2!</h1>
+      <h1>Round 2: One Word</h1>
+      <h3>This time, you can only use one word per celebrity. And it still can't be thir name, of course. </h3>
       <button type="submit" class="btn btn-primary btn-lg" ng-click="continue()">Continue</button>
     </div>
   </div>
 
   <div ng-show="gameStatus == 3" class="col-sm-8 col-sm-offset-2">
     <div class="jumbotron">
-      <h1>It's time to play round 3!</h1>
+      <h1>Round 3: Charades</h1>
+      <h3>No words in the final round - just acting!</h3>
       <button type="submit" class="btn btn-primary btn-lg" ng-click="continue()">Continue</button>
     </div>
   </div>
 
   <div ng-show="gameStatus == 4" class="col-sm-8 col-sm-offset-2">
     <div class="jumbotron">
-      <h1>The game is over.</h1>
+      <h1>Game Finished</h1>
     </div>
   </div>
 
   <div ng-show="gameStatus == 0" class="col-sm-8 col-sm-offset-2">
 
     <div ng-show="status == 0">
-      <div class="jumbotron">
-        <h1>{{player.name}}</h1>
-        <h2>It's not your turn yet.</h2>
-      </div>
+      <scoreboard game="player.game"></scoreboard>
     </div>
 
     <div ng-show="status == 1">

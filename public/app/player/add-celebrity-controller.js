@@ -7,10 +7,19 @@ angular.module('app')
   playerService.setAuthHeader();
   playerService.joinRooms();
 
+  $scope.getPlayer = function() {
+    $http.get('/api/player')
+    .then(function successCallback(response) {
+      $scope.player = response.data;
+    }, function errorCallback(resopnse) {
+      console.log(response);
+    });
+  }
+
   $scope.addCelebrity = function() {
     $http.post('/api/celebrity', $scope.formData)
     .then(function successCallback(response) {
-      $scope.celebritiesAdded.push(response.data);
+      $scope.player.celebrities.push(response.data);
       $scope.resetForm(form);
     }, function errorCallback(response) {
       $scope.errorMessage = response.data.message;
@@ -27,9 +36,12 @@ angular.module('app')
   }
 
   playerService.socket.on('game started', function(data) {
+    console.log("The game started.");
     $scope.$applyAsync(function () {
       $location.path( '/play' );
     });
   });
+
+  $scope.getPlayer();
 
 }]);

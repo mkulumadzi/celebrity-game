@@ -26,20 +26,6 @@ angular.module('app')
 
   $scope.loadGame();
 
-  // Increment score when an attempt is added
-  gameService.socket.on('attempt added', function(data) {
-    $scope.$applyAsync(function() {
-      console.log(data);
-      if ( data.correct ) {
-        if ( data.team === 'teamA' ) {
-          $scope.game.teamA.score += 1;
-        } else {
-          $scope.game.teamB.score += 1;
-        }
-      }
-    });
-  });
-
   // Update view when the turn ends
   gameService.socket.on('turn ended', function(data) {
     $scope.$applyAsync(function () {

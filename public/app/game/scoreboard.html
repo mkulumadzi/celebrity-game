@@ -1,0 +1,27 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Team</th>
+      <th>Round 1</th>
+      <th>Round 2</th>
+      <th>Round 3</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{game.teamA.name}}</th>
+      <td>{{game.teamA.scoreSummary.roundOne}}</td>
+      <td>{{game.teamA.scoreSummary.roundTwo}}</td>
+      <td>{{game.teamA.scoreSummary.roundThree}}</td>
+      <td>{{game.teamA.score}}</td>
+    </tr>
+    <tr>
+      <th scope="row">{{game.teamB.name}}</th>
+      <td>{{game.teamB.scoreSummary.roundOne}}</td>
+      <td>{{game.teamB.scoreSummary.roundTwo}}</td>
+      <td>{{game.teamB.scoreSummary.roundThree}}</td>
+      <td>{{game.teamB.score}}</td>
+    </tr>
+  </tbody>
+</table>

@@ -4,14 +4,13 @@ angular.module('app')
   gameService.setAuthHeader();
   gameService.joinRoom();
 
-  $scope.gamePlayers = [];
-  $scope.gameCelebrities = [];
   $scope.shortId = JSON.parse($cookies.get('game')).shortId;
 
   // Load data
   $scope.loadGame = function() {
     $http.get('/api/game')
     .then(function successCallback(response) {
+      $scope.game = response.data;
       console.log(response.data);
     }, function errorCallback(response) {
       console.log(response);
@@ -33,13 +32,13 @@ angular.module('app')
 
   gameService.socket.on('player joined', function(data) {
     $scope.$applyAsync(function () {
-      $scope.gamePlayers.push(data);
+      $scope.game.players.push(data);
     });
   });
 
   gameService.socket.on('celebrity added', function(data) {
     $scope.$applyAsync(function () {
-      $scope.gameCelebrities.push(data);
+      $scope.game.celebrities.push(data);
     });
   });
 
