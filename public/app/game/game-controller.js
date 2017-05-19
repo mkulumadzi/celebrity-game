@@ -17,7 +17,7 @@ angular.module('app')
         $scope.status = 0; // turn not in progress
         $scope.playerMessage = "Next up";
       } else {
-        $scope.game.nextPlayer = null;
+        $scope.status = -1;
       }
     }, function errorCallback(response) {
       console.log(response);

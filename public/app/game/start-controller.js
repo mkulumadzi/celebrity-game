@@ -9,6 +9,16 @@ angular.module('app')
   $scope.shortId = JSON.parse($cookies.get('game')).shortId;
 
   // Load data
+  $scope.loadGame = function() {
+    $http.get('/api/game')
+    .then(function successCallback(response) {
+      console.log(response.data);
+    }, function errorCallback(response) {
+      console.log(response);
+    });
+  };
+
+  // Start the game
   $scope.startGame = function() {
     $http.put('/api/game/start')
     .then(function successCallback(response) {
@@ -36,5 +46,7 @@ angular.module('app')
   gameService.socket.on('message', function (data) {
     console.log(data);
   });
+
+  $scope.loadGame();
 
 }]);
