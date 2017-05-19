@@ -1,7 +1,7 @@
 <div class="container">
 
   <div class="col-sm-8 col-sm-offset-2">
-    <h3>{{player.name}} - {{player.teamName}}</h3>
+    <h3>{{player.name}} - {{player.teamName}} ({{currentRound()}})</h3>
   </div>
 
   <div ng-show="gameStatus == 1" class="col-sm-8 col-sm-offset-2">
@@ -30,7 +30,8 @@
 
   <div ng-show="gameStatus == 4" class="col-sm-8 col-sm-offset-2">
     <div class="jumbotron">
-      <h1>Game Finished</h1>
+      <h1>Game Over</h1>
+      <scoreboard game="player.game"></scoreboard>
     </div>
   </div>
 
@@ -41,8 +42,7 @@
     </div>
 
     <div ng-show="status == 1">
-      <h1>{{player.name}}</h1>
-      <h2>It's your turn. Good luck!</h2>
+      <h1>It's your turn. Good luck!</h1>
 
       <div id="start-turn">
         <button type="submit" class="btn btn-primary btn-lg" ng-click="startTurn()">Start Turn</button>
@@ -53,21 +53,35 @@
       <div class="jumbotron">
         <h1>{{turn.celebrity.name}}</h1>
 
-        <h2>Time Remaining: {{timeRemaining}}</h2>
-
         <button type="button" class="btn btn-success btn-lg" ng-click="addAttempt(true)">Right</button>
 
         <button type="button" class="btn btn-danger btn-lg" ng-click="addAttempt(false)">Wrong</button>
+
+        <h3>Time Remaining: {{timeRemaining}}</h3>
       </div>
     </div>
 
     <div ng-show="status == 3">
-      <h1>{{player.name}}</h1>
-      <h2>Here's how you did.</h2>
+      <h1>Good job!</h1>
+      <h3>Here's how you did:</h3>
 
-      <div id="start-turn">
-        <button type="submit" class="btn btn-primary btn-lg" ng-click="finishTurn()">Finish</button>
-      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Right</th>
+            <th>Wrong</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{turnResults.right}}</td>
+            <td>{{turnResults.wrong}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button type="submit" class="btn btn-primary btn-lg" ng-click="finishTurn()">Finish</button>
+
     </div>
 
 

@@ -13,8 +13,6 @@ angular.module('app')
     }
 
     this.joinRooms = function() {
-      console.log(player._id);
-      console.log(game._id);
       socket.on('connect', function() {
         socket.emit('room', game._id);
         socket.emit('room', player._id);

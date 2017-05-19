@@ -62,6 +62,7 @@ angular.module('app')
 
   $scope.finishTurn = function() {
     $scope.status = 0;
+    $scope.turnResults = null;
   };
 
   // Let the user know when it's their turn
@@ -81,19 +82,19 @@ angular.module('app')
   // Update view when the turn ends, if it is now your turn.
   playerService.socket.on('turn ended', function(data) {
     console.log(data);
-    console.log( $scope.currentTurn._id === data.lastTurn._id );
 
     // Check whether this notification corresponds to an active turn - it may be fired off after the round ends.
-    if ( $scope.currentTurn._id === data.lastTurn._id ) {
+    if ( $scope.currentTurn && $scope.currentTurn._id === data.lastTurn._id ) {
       $scope.$applyAsync(function () {
         if ( $scope.turn ) {
           $scope.status = 3;
+          $scope.turnResults = data.lastTurn.results;
           $scope.turn = null;
 
           // Reset to status 0 if the player's view is still in the 'finished' state.
           $timeout(function() {
             if ( $scope.status == 3 ) {
-              $scope.status = 0;
+              $scope.finishTurn();
             }
           }, 5000);
 
@@ -130,5 +131,18 @@ angular.module('app')
 
   $scope.getPlayerDetails();
 
+  $scope.currentRound = function() {
+    if($scope.player.game.currentRound == "roundOne") {
+      return "Round 1";
+    } else if ($scope.player.game.currentRound == "roundTwo") {
+      return "Round 2";
+    } else if ($scope.player.game.currentRound == "roundThree") {
+      return "Round 3";
+    } else if ($scope.player.game.currentRound == "gameOver") {
+      return "Game Over";
+    } else {
+      "Error";
+    }
+  }
 
 }]);
