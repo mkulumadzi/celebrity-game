@@ -1,13 +1,19 @@
 angular.module('app')
   .controller('PlayCtrl', ['$scope', '$http', '$cookies', '$stateParams', '$location', 'playerService', '$timeout', function ($scope, $http, $cookies, $stateParams, $location, playerService, $timeout) {
 
-  // $scope.player = playerService.player;
-
   playerService.setAuthHeader();
   playerService.joinRooms();
 
+  var gameC = $cookies.get('gameStatusesShown');
+  if ( gameC) {
+    $scope.gameStatusesShown = JSON.parse(gameC);
+  } else {
+    $scope.gameStatusesShown = [];
+  }
+
   $scope.continue = function() {
     $scope.gameStatus = 0; //Show gameplay controls.
+    $scope.getPlayerDetails();
   }
 
   $scope.getPlayerDetails = function() {
@@ -15,7 +21,21 @@ angular.module('app')
     .then(function successCallback(response) {
       $scope.player = response.data;
       $scope.status = response.data.status;
-      $scope.gameStatus = response.data.game.status;
+
+      var gameStatus = response.data.game.status;
+
+      if( gameStatus == 1 || gameStatus == 2 || gameStatus == 3 ) {
+        if($scope.gameStatusesShown.indexOf(gameStatus) == -1) {
+          $scope.gameStatus = gameStatus;
+          $scope.gameStatusesShown.push(gameStatus);
+          $cookies.put('gameStatusesShown', JSON.stringify($scope.gameStatusesShown));
+        } else {
+          $scope.gameStatus = 0; // Show normal gameplay mode if the round instructions have already been shown.
+        }
+      } else {
+        $scope.gameStatus = gameStatus;
+      }
+
       if ( response.data.turn ) {
         $scope.turn = response.data.turn;
         $scope.timeRemaining = $scope.turn.timeRemaining;
@@ -132,16 +152,18 @@ angular.module('app')
   $scope.getPlayerDetails();
 
   $scope.currentRound = function() {
-    if($scope.player.game.currentRound == "roundOne") {
-      return "Round 1";
-    } else if ($scope.player.game.currentRound == "roundTwo") {
-      return "Round 2";
-    } else if ($scope.player.game.currentRound == "roundThree") {
-      return "Round 3";
-    } else if ($scope.player.game.currentRound == "gameOver") {
-      return "Game Over";
-    } else {
-      "Error";
+    if($scope.player) {
+      if($scope.player.game.currentRound == "roundOne") {
+        return "Round 1";
+      } else if ($scope.player.game.currentRound == "roundTwo") {
+        return "Round 2";
+      } else if ($scope.player.game.currentRound == "roundThree") {
+        return "Round 3";
+      } else if ($scope.player.game.currentRound == "gameOver") {
+        return "Game Over";
+      } else {
+        "Error";
+      }
     }
   }
 

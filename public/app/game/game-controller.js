@@ -1,5 +1,5 @@
 angular.module('app')
-  .controller('GameCtrl', ['$scope', '$http', '$cookies', 'gameService', function ($scope, $http, $cookies, gameService) {
+  .controller('GameCtrl', ['$scope', '$http', '$cookies', 'gameService', '$timeout', function ($scope, $http, $cookies, gameService, $timeout) {
 
   gameService.setAuthHeader();
   gameService.joinRoom();
@@ -31,7 +31,7 @@ angular.module('app')
     $scope.$applyAsync(function () {
       $scope.status = 0; // turn not in progress
       $scope.playerMessage = "Next up";
-      $scope.nextPlayer = data;
+      $scope.game.nextPlayer = data.nextPlayer;
     });
   });
 
@@ -39,8 +39,19 @@ angular.module('app')
   gameService.socket.on('turn started', function(data) {
     $scope.$applyAsync(function () {
       $scope.status = 1; // turn not in progress
+      $scope.timeRemaining = data.turnDuration;
+      $scope.timer = $timeout($scope.onTimerTimeout, 1000);
       $scope.playerMessage = "Now playing";
     });
   });
+
+  $scope.onTimerTimeout = function() {
+    if( $scope.timeRemaining == 0) {
+      $timeout.cancel($scope.timer);
+    } else {
+      $scope.timeRemaining--;
+      timerTimeout = $timeout($scope.onTimerTimeout, 1000);
+    }
+  }
 
 }]);

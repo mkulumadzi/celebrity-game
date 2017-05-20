@@ -6,6 +6,10 @@
 
   <div ng-hide="status == -1" class="col-sm-10 col-sm-offset-1">
     <h1>{{playerMessage}}: {{game.nextPlayer.name}}</h1>
+
+    <div ng-show="timeRemaining">
+      <h3 >Time Remaining: {{timeRemaining}}</h3>
+    </div>
   </div>
 
   <div class="col-sm-5 col-sm-offset-1">

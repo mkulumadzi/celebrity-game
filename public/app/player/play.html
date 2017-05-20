@@ -29,17 +29,14 @@
   </div>
 
   <div ng-show="gameStatus == 4" class="col-sm-8 col-sm-offset-2">
-    <div class="jumbotron">
-      <h1>Game Over</h1>
-      <scoreboard game="player.game"></scoreboard>
-    </div>
+    <h1>Game Over</h1>
+  </div>
+
+  <div ng-show="gameStatus == 4 || (gameStatus == 0 && status == 0)">
+    <scoreboard game="player.game"></scoreboard>
   </div>
 
   <div ng-show="gameStatus == 0" class="col-sm-8 col-sm-offset-2">
-
-    <div ng-show="status == 0">
-      <scoreboard game="player.game"></scoreboard>
-    </div>
 
     <div ng-show="status == 1">
       <h1>It's your turn. Good luck!</h1>

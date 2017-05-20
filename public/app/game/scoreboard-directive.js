@@ -6,7 +6,7 @@ angular.module('app')
     gameService.joinRoom();
     // Increment score when an attempt is added
     gameService.socket.on('attempt added', function(data) {
-      // console.log("SCOREBOARDDDD");
+      console.log("SCOREBOARDDDD");
       scope.$applyAsync(function() {
         console.log(data);
         if ( data.correct ) {
