@@ -24,6 +24,10 @@ angular.module('app')
 
       var gameStatus = response.data.game.status;
 
+      console.log(gameStatus);
+      console.log($scope.gameStatusesShown)
+      console.log($scope.gameStatusesShown.indexOf(gameStatus) == -1);
+
       if( gameStatus == 1 || gameStatus == 2 || gameStatus == 3 ) {
         if($scope.gameStatusesShown.indexOf(gameStatus) == -1) {
           $scope.gameStatus = gameStatus;
@@ -140,11 +144,16 @@ angular.module('app')
 
       if( data === "roundOne" ) {
         $scope.gameStatus = 2; // Show round 2 instructions
+
       } else if ( data === "roundTwo" ) {
         $scope.gameStatus = 3; // Show round 3 instructions
       } else {
         $scope.gameStatus = 4; // Show end of game summary
+        $scope.getPlayerDetails();
       }
+
+      $scope.gameStatusesShown.push($scope.gameStatus);
+      $cookies.put('gameStatusesShown', JSON.stringify($scope.gameStatusesShown));
 
     });
   });

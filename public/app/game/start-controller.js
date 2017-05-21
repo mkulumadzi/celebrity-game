@@ -4,8 +4,6 @@ angular.module('app')
   gameService.setAuthHeader();
   gameService.joinRoom();
 
-  $scope.shortId = JSON.parse($cookies.get('game')).shortId;
-
   // Load data
   $scope.loadGame = function() {
     $http.get('/api/game')

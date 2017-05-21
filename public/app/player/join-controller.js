@@ -8,6 +8,7 @@ angular.module('app')
       var player = response.data
       $cookies.put('player', JSON.stringify(player));
       $cookies.put('game', JSON.stringify(player.game));
+      $cookies.put('gameStatusesShown', JSON.stringify([]));
       $location.path("/celebrity");
     }, function errorCallback(response) {
       $scope.errorMessage = response.data.message;

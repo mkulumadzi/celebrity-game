@@ -1,7 +1,7 @@
 <div class="container">
 
-  <div class="col-sm-8 col-sm-offset-2">
-    <h3>{{player.name}} - {{player.teamName}} ({{currentRound()}})</h3>
+  <div ng-show="player" class="col-sm-8 col-sm-offset-2">
+    <h3>{{player.name}} - {{player.teamName}}</h3>
   </div>
 
   <div ng-show="gameStatus == 1" class="col-sm-8 col-sm-offset-2">

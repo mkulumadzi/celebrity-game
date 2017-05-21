@@ -8,7 +8,6 @@ angular.module('app')
   $scope.loadGame = function() {
     $http.get('/api/game')
     .then(function successCallback(response) {
-      console.log(response.data);
       $scope.game = response.data;
       if( $scope.game.nextPlayer && $scope.game.nextPlayer.turn ) {
         $scope.status = 1; // turn in progress
