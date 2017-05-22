@@ -169,7 +169,7 @@ form {
 }
 
 .logo-large {
-  font-size: 6em;
+  font-size: 5em;
 }
 
 .alert-danger {
@@ -182,4 +182,8 @@ form {
   border: 0 none;
   letter-spacing: 1px;
   font-weight: 700;
+}
+
+.col-50 {
+  width: 50%;
 }

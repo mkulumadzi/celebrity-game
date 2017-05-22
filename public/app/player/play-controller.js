@@ -148,11 +148,14 @@ angular.module('app')
 
       if( data === "roundOne" ) {
         $scope.gameStatus = 2; // Show round 2 instructions
+        $scope.player.game.currentRound = "roundTwo";
 
       } else if ( data === "roundTwo" ) {
         $scope.gameStatus = 3; // Show round 3 instructions
+        $scope.player.game.currentRound = "roundThree";
       } else {
         $scope.gameStatus = 4; // Show end of game summary
+        $scope.player.game.phase = "ended";
         $scope.getPlayerDetails();
       }
 

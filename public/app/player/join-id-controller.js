@@ -18,7 +18,8 @@ angular.module('app')
     $http.defaults.headers.common.Authorization = 'Bearer ' + player._id;
     $http.get('/api/player')
     .then(function successCallback(response) {
-      setCookies(player);
+      $scope.player = response.data;
+      setCookies();
       $location.path("/play");
     }, function errorCallback(response) {
       console.log(response);
@@ -29,8 +30,8 @@ angular.module('app')
     $scope.formData.shortId = $stateParams.id;
     $http.post('/api/join', $scope.formData)
     .then(function successCallback(response) {
-      var player = response.data
-      setCookies(player);
+      $scope.player = response.data
+      setCookies($scope.player);
       $location.path("/celebrity");
     }, function errorCallback(response) {
       $scope.errorMessage = response.data.message;
@@ -41,9 +42,9 @@ angular.module('app')
     });
   }
 
-  var setCookies = function(player) {
-    $cookies.put('player', JSON.stringify(player));
-    $cookies.put('game', JSON.stringify(player.game));
+  var setCookies = function() {
+    $cookies.put('player', JSON.stringify({_id: $scope.player._id, name: $scope.player.name}));
+    $cookies.put('game', JSON.stringify({_id: $scope.player.game._id, shortId: $scope.player.game.shortId}));
     $cookies.put('gameStatusesShown', JSON.stringify([]));
   }
 

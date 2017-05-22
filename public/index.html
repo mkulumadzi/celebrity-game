@@ -27,7 +27,11 @@
     <header ng-hide="onHomeScreen" ng-click="goHome()">Celebrity</header>
 
     <!-- where ui-router load the views -->
-    <ui-view></ui-view>
+    <div class="container">
+      <div class="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+        <ui-view></ui-view>
+      </div>
+    </div>
 
     <!-- deps -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -57,11 +61,12 @@
 
     <script src="app/game/team-directive.js"></script>
     <script src="app/game/scoreboard-directive.js"></script>
+    <script src="app/game/game-directions-directive.js"></script>
 
   </body>
 
   <footer class="footer">
-    <p class="footer-text">Copyright 2017 Evan Waters | <a ng-href="" ng-click="redirectToRules()">Game Rules</a> <span ng-cloak ng-show="shortId">| {{shortId}}</span>
+    <p class="footer-text">Copyright 2017 Evan Waters | <a ng-href="" ng-click="redirectToRules()">Game Rules</a> <span ng-cloak ng-show="shortId">| Game Code:  {{shortId}}</span>
   </footer>
 
 </html>

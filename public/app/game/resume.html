@@ -1,18 +1,13 @@
-<div class="container">
-
-  <div class="col-sm-8 col-sm-offset-2">
-    <h1>Enter the game's Short Code to go to its Dashboard:</h1>
-    <form name="form">
-      <div class="form-group">
-        <input type="text" class="form-control input-lg text-left" placeholder="AB31" ng-model="formData.shortId" name="name" ng-change="errorMessage=''">
-      </div>
-
-      <button type="submit" class="btn btn-primary btn-lg" ng-click="findGame()">Find Game</button>
-
-      <div class="alert alert-danger" ng-show="errorMessage">
-        {{errorMessage}}
-      </div>
-
-    </form>
+<h1>Enter the game's Short Code to go to its Dashboard:</h1>
+<form name="form">
+  <div class="form-group">
+    <input type="text" class="form-control input-lg text-left" placeholder="AB31" ng-model="formData.shortId" name="name" ng-change="errorMessage=''">
   </div>
-</div>
+
+  <button type="submit" class="btn btn-primary btn-lg" ng-click="findGame()">Find Game</button>
+
+  <div class="alert alert-danger" ng-show="errorMessage">
+    {{errorMessage}}
+  </div>
+
+</form>

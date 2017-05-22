@@ -1,93 +1,77 @@
-<div class="container">
+<div ng-show="player" class="row">
+  <p>{{player.name}} - {{player.teamName}}</p>
+</div>
 
-  <div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
-
-    <div ng-show="player" class="row">
-      <p>{{player.name}} - {{player.teamName}}</p>
+<div ng-show="gameStatus == 1" class="row">
+  <h1>The Teams:</h1>
+  <div class="row">
+    <div class="col-xs-6">
+      <team-summary info="player.game.teamA"></team-summary>
     </div>
 
-    <div ng-show="gameStatus == 1" class="row">
-      <h1>Round 1: Taboo</h1>
-      <p>When it's your turn, get your teammates to guess as many celebrities as possible in 1 minute - you can use any word except that celebrity's name.</p>
-      <form>
-        <button type="submit" class="btn btn-primary btn-lg" ng-click="continue()">Continue</button>
-      </form>
+    <div class="col-xs-6">
+      <team-summary info="player.game.teamB"></team-summary>
     </div>
+  </div>
+</div>
 
-    <div ng-show="gameStatus == 2" class="row">
-      <h1>Round 2: One Word</h1>
-      <p>This time, you can only use one word per celebrity. And it still can't be thir name, of course. </p>
-      <form>
-        <button type="submit" class="btn btn-primary btn-lg" ng-click="continue()">Continue</button>
-      </form>
-    </div>
+<div ng-show="gameStatus > 0" class="row">
+  <game-directions game="player.game"></game-directions>
+  <form ng-show="gameStatus != 4">
+    <button type="submit" class="btn btn-primary btn-lg" ng-click="continue()">Continue</button>
+  </form>
+</div>
 
-    <div ng-show="gameStatus == 3" class="row">
-      <h1>Round 3: Charades</h1>
-      <p>No words in the final round - just acting!</p>
-      <form>
-        <button type="submit" class="btn btn-primary btn-lg" ng-click="continue()">Continue</button>
-      </form>
-    </div>
+<div ng-show="gameStatus == 4 || (gameStatus == 0 && status == 0)">
+  <scoreboard game="player.game"></scoreboard>
+</div>
 
-    <div ng-show="gameStatus == 4" class="row">
-      <h1>Game Over</h1>
-    </div>
+<div ng-show="gameStatus == 0" class="row">
 
-    <div ng-show="gameStatus == 4 || (gameStatus == 0 && status == 0)">
-      <scoreboard game="player.game"></scoreboard>
-    </div>
+  <div ng-show="status == 1">
+    <h1>It's your turn. Good luck!</h1>
 
-    <div ng-show="gameStatus == 0" class="row">
+    <form>
+      <button type="submit" class="btn btn-primary btn-lg" ng-click="startTurn()">Start Turn</button>
+    </form>
+  </div>
 
-      <div ng-show="status == 1">
-        <h1>It's your turn. Good luck!</h1>
+  <div ng-show="status == 2">
+    <h1>{{turn.celebrity.name}}</h1>
 
-        <form>
-          <button type="submit" class="btn btn-primary btn-lg" ng-click="startTurn()">Start Turn</button>
-        </form>
-      </div>
+    <form>
 
-      <div ng-show="status == 2">
-        <h1>{{turn.celebrity.name}}</h1>
+      <button type="button" class="btn btn-success btn-lg btn-half" ng-click="addAttempt(true)">Right</button>
 
-        <form>
+      <button type="button" class="btn btn-danger btn-lg btn-half" ng-click="addAttempt(false)">Skip</button>
 
-          <button type="button" class="btn btn-success btn-lg btn-half" ng-click="addAttempt(true)">Right</button>
+    </form>
 
-          <button type="button" class="btn btn-danger btn-lg btn-half" ng-click="addAttempt(false)">Skip</button>
+    <p>Time Remaining: {{timeRemaining}}</p>
+  </div>
 
-        </form>
+  <div ng-show="status == 3">
+    <h1>Good job!</h1>
+    <p>Here's how you did:</p>
 
-        <p>Time Remaining: {{timeRemaining}}</p>
-      </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Right</th>
+          <th>Wrong</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{turnResults.right}}</td>
+          <td>{{turnResults.wrong}}</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <div ng-show="status == 3">
-        <h1>Good job!</h1>
-        <p>Here's how you did:</p>
-
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Right</th>
-              <th>Wrong</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{{turnResults.right}}</td>
-              <td>{{turnResults.wrong}}</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <form>
-          <button type="submit" class="btn btn-primary btn-lg" ng-click="finishTurn()">Finish</button>
-        </form>
-
-      </div>
-
-    </div>
+    <form>
+      <button type="submit" class="btn btn-primary btn-lg" ng-click="finishTurn()">Finish</button>
+    </form>
 
   </div>
 

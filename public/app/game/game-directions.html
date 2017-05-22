@@ -1,0 +1,18 @@
+<div ng-show="game.currentRound === 'roundOne'">
+  <h1>Round 1: Taboo</h1>
+  <p>When it's your turn, get your teammates to guess as many celebrities as possible in 1 minute - you can use any word except that celebrity's name.</p>
+</div>
+
+<div ng-show="game.currentRound === 'roundTwo'">
+  <h1>Round 2: One Word</h1>
+  <p>This time, you can only use one word per celebrity. And it still can't be thir name, of course.</p>
+</div>
+
+<div ng-show="game.currentRound === 'roundThree'">
+  <h1>Round 3: Charades</h1>
+  <p>No words in the final round - just acting!</p>
+</div>
+
+<div ng-show="game.phase === 'ended'">
+  <h1>Game Over</h1>
+</div>

@@ -1,35 +1,28 @@
-<div class="container">
+<div class="row">
+  <game-directions game="game"></game-directions>
+</div>
 
-  <div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+<div class="row">
+  <scoreboard game="game"></scoreboard>
+</div>
 
-    <div class="row">
-      <scoreboard game="game"></scoreboard>
+<div class="row" ng-hide="game.phase === 'ended'">
+  <div class="col-xs-6">
+    <h1>{{playerMessage}}: {{game.nextPlayer.name}}</h1>
+  </div>
+  <div class="col-xs-6">
+    <div ng-show="status == 1">
+      <h1>Time Remaining: {{timeRemaining}}</h1>
     </div>
+  </div>
+</div>
 
-    <div class="row"
-      <div ng-hide="status == -1" class="col-sm-10 col-sm-offset-1">
-        <div class="col-sm-6">
-          <h1>{{playerMessage}}: {{game.nextPlayer.name}}</h1>
-        </div>
-
-        <div ng-show="timeRemaining" class="col-sm-6">
-          <h1>Time Remaining: {{timeRemaining}}</h1>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-
-      <div class="col-sm-5 col-sm-offset-1">
-        <team-summary info="game.teamA"></team-summary>
-      </div>
-
-      <div class="col-sm-5">
-        <team-summary info="game.teamB"></team-summary>
-      </div>
-
-    </div>
-
+<div class="row">
+  <div class="col-xs-6">
+    <team-summary info="game.teamA"></team-summary>
   </div>
 
+  <div class="col-xs-6">
+    <team-summary info="game.teamB"></team-summary>
+  </div>
 </div>

@@ -25,10 +25,30 @@ angular.module('app')
 
   $scope.loadGame();
 
+  // Update the view when the round ends
+  // Update view when the turn ends, if it is now your turn.
+  gameService.socket.on('round ended', function(data) {
+    $scope.$applyAsync(function () {
+      $scope.timeRemaining = null;
+      $timeout.cancel($scope.timer);
+      $scope.status = 0;
+      if( data === "roundOne" ) {
+        $scope.game.currentRound = "roundTwo";
+      } else if ( data === "roundTwo" ) {
+        $scope.game.currentRound = "roundThree";
+      } else {
+        $scope.game.phase = "ended";
+        $scope.loadGame();
+      }
+    });
+  });
+
   // Update view when the turn ends
   gameService.socket.on('turn ended', function(data) {
     $scope.$applyAsync(function () {
       $scope.status = 0; // turn not in progress
+      $scope.timeRemaining = null;
+      $timeout.cancel($scope.timer);
       $scope.playerMessage = "Next up";
       $scope.game.nextPlayer = data.nextPlayer;
     });
@@ -37,7 +57,7 @@ angular.module('app')
   // Update view when the turn ends
   gameService.socket.on('turn started', function(data) {
     $scope.$applyAsync(function () {
-      $scope.status = 1; // turn not in progress
+      $scope.status = 1; // turn in progress
       $scope.timeRemaining = data.turnDuration;
       $scope.timer = $timeout($scope.onTimerTimeout, 1000);
       $scope.playerMessage = "Now playing";
@@ -52,7 +72,5 @@ angular.module('app')
       timerTimeout = $timeout($scope.onTimerTimeout, 1000);
     }
   }
-
-  // Need to add the round ended / game ended logic.
 
 }]);
