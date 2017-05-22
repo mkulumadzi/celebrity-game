@@ -1,16 +1,29 @@
 <div class="container">
 
-  <div class="col-sm-8 col-sm-offset-2">
-    <div class="jumbotron">
-      <h1> Welcome to Celebrity!</h1>
-
-      <button type="submit" class="btn btn-primary btn-lg" ng-click="createGame()">Create Game</button>
-
-      <button type="submit" class="btn disabled btn-lg" ng-click="joinGame()">Join Game</button>
-
-      <button type="submit" class="btn disabled btn-lg" ng-click="resumeGame()">Resume Game</button>
-
+  <div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+    <div class="splash-screen">
+      <p class="logo logo-large">Celebrity</p>
     </div>
+  </div>
+
+  <div class="col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+
+    <form>
+
+      <div class="row">
+        <button type="submit" class="btn btn-primary btn-lg btn-full" ng-click="createGame()">Create Game</button>
+      </div>
+
+      <div class="row">
+        <button type="submit" class="btn btn-secondary btn-lg btn-full" ng-click="joinGame()">Join Game</button>
+      </div>
+
+      <div class="row">
+        <button type="submit" class="btn btn-secondary btn-lg btn-full" ng-click="resumeGame()">Resume Game</button>
+      </div>
+
+    </form>
+
   </div>
 
 </div>

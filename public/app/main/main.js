@@ -38,4 +38,9 @@ angular.module('app')
       controller: 'PlayCtrl'
     });
 
+    $stateProvider.state('rules', {
+      url: '/rules',
+      templateUrl: 'app/static/rules.html'
+    });
+
   }]);

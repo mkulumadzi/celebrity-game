@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html ng-app="celebrity" ng-controller="IndexCtrl">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible", content="IE=edge,chrome=1">
@@ -14,15 +14,17 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
 
-    <!-- app -->
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab|Parisienne" rel="stylesheet">
+
+    <!-- css -->
     <link rel="stylesheet" href="app/app.css">
+
   </head>
 
-  <header>
-    Celebrity Game Icon Placeholder
-  </header>
+  <body ng-app="app" ng-controller="AppCtrl">
 
-  <body ng-app="app">
+    <header ng-hide="hideHeader">Celebrity</header>
 
     <!-- where ui-router load the views -->
     <!-- <div ui-view></div> -->
@@ -38,6 +40,8 @@
     <script src="/bower_components/moment/moment.js"></script>
 
     <!-- app -->
+    <!-- load app ctrl -->
+    <script src="index.js"></script>
     <script src="app/app.js"></script>
     <script src="app/main/main.js"></script>
     <script src="app/main/main-controller.js"></script>
@@ -55,8 +59,8 @@
 
   </body>
 
-  <footer>
-    Copyright 2017 Evan Waters and Friends |
-    Send feedback to evan.waters@gmail.com
+  <footer class="footer">
+    <p class="footer-text">Copyright 2017 Evan Waters | <a ng-href="" ng-click="redirectToRules()">Game Rules</a>
   </footer>
+
 </html>

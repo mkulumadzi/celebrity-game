@@ -1,47 +1,57 @@
 <div class="container">
 
-  <div class="col-sm-8 col-sm-offset-2">
-    <div class="jumbotron">
+  <div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+    <div class="row">
       <h1>Game created</h1>
 
-      <h3>Visit <a href={{game.joinUrl}}>{{game.joinUrl}}</a> on your mobile phone to join this game!</h3>
+      <p>Visit <a href={{game.joinUrl}}>{{game.joinUrl}}</a> on your mobile phone to join this game!</p>
 
-      <h3>To start the game, at least 4 players must join, and at least 20 celebrities must be added. </h3>
+      <p>To start the game, at least 4 players must join, and at least 20 celebrities must be added. </p>
 
-      <button type="submit" class="btn btn-primary btn-lg" ng-click="startGame()">Start Game</button>
+      <form>
+        <button type="submit" class="btn btn-primary btn-lg" ng-click="startGame()">Start Game</button>
+      </form>
 
       <div class="alert alert-danger" ng-show="errorMessage">
         {{errorMessage}}
       </div>
-
     </div>
 
-  </div>
+    <div class="row">
 
-  <div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
-      <h2>Celebrities: {{game.celebrities.length}}</h2>
-    </div>
-  </div>
+      <div class="col-md-6">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Players</th>
+            </tr>
+          </thead>
 
-  <div id="player-list" class="row">
-      <div class="col-sm-8 col-sm-offset-2">
+          <tbody>
+            <tr ng-repeat="player in game.players">
+              <td>{{player.name}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-        <div class="page-header">
-          <h2>Players:</h2>
-        </div>
+      <div class="col-md-6">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Celebrities added</th>
+            </tr>
+          </thead>
 
-        <div ng-repeat="player in game.players">
-
-          <div class="list-group">
-            <li class="list-group-item">
-              <h4 class="list-group-item-heading">{{ player.name }}</h4>
-            </li>
-          </div>
-
-        </div>
+          <tbody>
+            <tr>
+              <td>{{game.celebrities.length}}</td>
+            </tr>
+          </tbody>
+        </table>
 
       </div>
-    </div>
+
+  </div>
 
 </div>

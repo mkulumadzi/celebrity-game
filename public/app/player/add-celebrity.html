@@ -2,37 +2,39 @@
 
   <div class="col-sm-8 col-sm-offset-2">
 
-    <div class="jumbotron">
-      <h1>Welcome, {{player.name}}!</h1>
-      <h3>Now add some celebrities:</h3>
-      <form name="form">
-        <div class="form-group">
-          <input type="text" class="form-control input-lg text-left" placeholder="Dave Coulier" ng-model="formData.name">
-        </div>
+    <h1>Welcome, {{player.name}}!</h1>
+    <p>Now add some celebrities:</p>
+    <form name="form">
+      <div class="form-group">
+        <input type="text" class="form-control input-lg text-left" placeholder="Dave Coulier" ng-model="formData.name">
+      </div>
 
-        <button type="submit" class="btn btn-primary btn-lg" ng-click="addCelebrity()">Add</button>
+      <button type="submit" class="btn btn-primary btn-lg" ng-click="addCelebrity()">Add</button>
 
-        <div class="alert alert-danger" ng-show="errorMessage">
-          {{errorMessage}}
-        </div>
+      <div class="alert alert-danger" ng-show="errorMessage">
+        {{errorMessage}}
+      </div>
 
 
-      </form>
-    </div>
+    </form>
   </div>
 
   <div id="celebrity-list" class="row">
       <div class="col-sm-8 col-sm-offset-2">
 
-        <div ng-repeat="celebrity in player.celebrities">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Celebrities added</th>
+            </tr>
+          </thead>
 
-          <div class="list-group">
-            <li class="list-group-item">
-              <h4 class="list-group-item-heading">{{ celebrity.name }}</h4>
-            </li>
-          </div>
-
-        </div>
+          <tbody>
+            <tr ng-repeat="celebrity in player.celebrities">
+              <td>{{celebrity.name}}</td>
+            </tr>
+          </tbody>
+        </table>
 
       </div>
     </div>

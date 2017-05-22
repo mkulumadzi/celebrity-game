@@ -12,8 +12,6 @@ angular.module('app', [
     $locationProvider.html5Mode(true); // allow html5mode routes (no #)
     $urlRouterProvider.otherwise('/'); // if route not found redirect to /
   }])
-
-  // after the configuration and when app runs the first time we o some more stuff
   .run(['$rootScope', '$state', function ($rootScope, $state) {
     'use strict';
     // this is available from all across the app
@@ -21,4 +19,16 @@ angular.module('app', [
 
     // make $state available from templates
     $rootScope.$state = $state;
+
+}])
+.controller('AppCtrl', ['$scope', '$location', '$rootScope', function( $scope, $location, $rootScope) {
+  $scope.hideHeader = $location.path() === "/";
+
+  $rootScope.$watch(function() {
+      return $location.path();
+    },
+    function(a){
+      $scope.hideHeader = $location.path() === "/";
+  });
+
 }]);

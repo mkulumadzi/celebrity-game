@@ -107,6 +107,10 @@ angular.module('app')
   playerService.socket.on('turn ended', function(data) {
     console.log(data);
 
+    console.log("Turn ended");
+    console.log($scope.currentTurn && $scope.currentTurn._id === data.lastTurn._id);
+
+
     // Check whether this notification corresponds to an active turn - it may be fired off after the round ends.
     if ( $scope.currentTurn && $scope.currentTurn._id === data.lastTurn._id ) {
       $scope.$applyAsync(function () {

@@ -1,23 +1,35 @@
 <div class="container">
 
   <div class="col-sm-10 col-sm-offset-1">
-    <scoreboard game="game"></scoreboard>
-  </div>
 
-  <div ng-hide="status == -1" class="col-sm-10 col-sm-offset-1">
-    <h1>{{playerMessage}}: {{game.nextPlayer.name}}</h1>
-
-    <div ng-show="timeRemaining">
-      <h3 >Time Remaining: {{timeRemaining}}</h3>
+    <div class="row">
+      <scoreboard game="game"></scoreboard>
     </div>
-  </div>
 
-  <div class="col-sm-5 col-sm-offset-1">
-    <team-summary info="game.teamA"></team-summary>
-  </div>
+    <div class="row"
+      <div ng-hide="status == -1" class="col-sm-10 col-sm-offset-1">
+        <div class="col-sm-6">
+          <h1>{{playerMessage}}: {{game.nextPlayer.name}}</h1>
+        </div>
 
-  <div class="col-sm-5">
-    <team-summary info="game.teamB"></team-summary>
+        <div ng-show="timeRemaining" class="col-sm-6">
+          <h1>Time Remaining: {{timeRemaining}}</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-sm-5 col-sm-offset-1">
+        <team-summary info="game.teamA"></team-summary>
+      </div>
+
+      <div class="col-sm-5">
+        <team-summary info="game.teamB"></team-summary>
+      </div>
+
+    </div>
+
   </div>
 
 </div>
