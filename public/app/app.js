@@ -21,14 +21,25 @@ angular.module('app', [
     $rootScope.$state = $state;
 
 }])
-.controller('AppCtrl', ['$scope', '$location', '$rootScope', function( $scope, $location, $rootScope) {
+.controller('AppCtrl', ['$scope', '$location', '$rootScope', '$cookies', function( $scope, $location, $rootScope, $cookies) {
   $scope.hideHeader = $location.path() === "/";
 
   $rootScope.$watch(function() {
       return $location.path();
     },
     function(a){
-      $scope.hideHeader = $location.path() === "/";
+      // Hide header on the home page
+      $scope.onHomeScreen = $location.path() === "/";
+
+      // Check for game, to display short code
+      if( $cookies.get('game')) {
+        $scope.game = JSON.parse($cookies.get('game'));
+        $scope.shortId = $scope.game.shortId;
+      }
   });
+
+  $scope.goHome = function() {
+    $location.path( '/' );
+  }
 
 }]);

@@ -24,10 +24,9 @@
 
   <body ng-app="app" ng-controller="AppCtrl">
 
-    <header ng-hide="hideHeader">Celebrity</header>
+    <header ng-hide="onHomeScreen" ng-click="goHome()">Celebrity</header>
 
     <!-- where ui-router load the views -->
-    <!-- <div ui-view></div> -->
     <ui-view></ui-view>
 
     <!-- deps -->
@@ -48,8 +47,10 @@
     <script src="app/game/start-controller.js"></script>
     <script src="app/game/game-controller.js"></script>
     <script src="app/player/join-controller.js"></script>
+    <script src="app/player/join-id-controller.js"></script>
     <script src="app/player/add-celebrity-controller.js"></script>
     <script src="app/player/play-controller.js"></script>
+    <script src="app/game/resume-controller.js"></script>
 
     <script src="app/game/game-service.js"></script>
     <script src="app/player/player-service.js"></script>
@@ -60,7 +61,7 @@
   </body>
 
   <footer class="footer">
-    <p class="footer-text">Copyright 2017 Evan Waters | <a ng-href="" ng-click="redirectToRules()">Game Rules</a>
+    <p class="footer-text">Copyright 2017 Evan Waters | <a ng-href="" ng-click="redirectToRules()">Game Rules</a> <span ng-cloak ng-show="shortId">| {{shortId}}</span>
   </footer>
 
 </html>

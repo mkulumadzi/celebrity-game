@@ -21,9 +21,21 @@ angular.module('app')
     });
 
     $stateProvider.state('join', {
-      url: '/join/:id',
+      url: '/join',
       templateUrl: 'app/player/join.html',
       controller: 'JoinGameCtrl'
+    });
+
+    $stateProvider.state('join with id', {
+      url: '/join/:id',
+      templateUrl: 'app/player/join-id.html',
+      controller: 'JoinGameIdCtrl'
+    });
+
+    $stateProvider.state('resume', {
+      url: '/resume',
+      templateUrl: 'app/game/resume.html',
+      controller: 'ResumeGameCtrl'
     });
 
     $stateProvider.state('add-celebrity', {

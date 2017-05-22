@@ -12,4 +12,12 @@ angular.module('app')
     });
   }
 
+  $scope.joinGame = function() {
+    $location.path( '/join' );
+  }
+
+  $scope.resumeGame = function() {
+    $location.path( '/resume' );
+  }
+
 }]);
