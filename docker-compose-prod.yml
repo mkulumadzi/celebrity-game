@@ -14,7 +14,7 @@ mongodb:
   ports:
     - "27017:27017"
 webapp:
-  build: .
+  image: mkulumadzi/celebrity-game:latest
   links:
   - server:api1
   ports:
