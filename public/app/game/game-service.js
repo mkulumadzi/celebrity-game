@@ -1,7 +1,7 @@
 angular.module('app')
   .service('gameService', function($http, $cookies) {
 
-    var socket = io('http://192.168.99.100:8080');
+    var socket = io('http://celebrity.kuyenda.io/api');
     var gameId = JSON.parse($cookies.get('game'))._id;
 
     this.socket = socket;
